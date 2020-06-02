@@ -1,0 +1,17 @@
+{
+  "name": "solid-snowpack-starter",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "nano-css": "^5.3.0",
+    "solid-js": "^0.18.4"
+  },
+  "scripts": {
+    "dev": "snowpack dev",
+    "build": "snowpack build"
+  },
+  "devDependencies": {
+    "babel-preset-solid": "^0.18.4",
+    "snowpack": "^2.0.0"
+  }
+}
