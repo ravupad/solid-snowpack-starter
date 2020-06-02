@@ -20,7 +20,16 @@ const App = () => {
     props: {}
   }));
   route();
-  return () => <state.component {...state.props}/>;
+  return () => <state.component {...state.props} />;
 };
 
 render(() => <App/>, document.getElementById('root')); 
+
+if (import.meta.hot) {
+  import.meta.hot.accept((update) => {
+    console.log('hmr update', update);
+  });
+  import.meta.hot.dispose(() => {
+    console.log('hmr dispose');    
+  });
+}

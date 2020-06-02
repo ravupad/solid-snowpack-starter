@@ -1,9 +1,9 @@
-import {createState, For} from 'solid-js';
+import {createState, For, onCleanup} from 'solid-js';
 import jsx from './nanocss';
 import route from './router';
 
-const For2 = jsx('div', {
-  'background-color': 'green',
+const Wrapper = jsx('div', {
+  'background-color': 'cyan',
   'padding': '10px'
 });
 
@@ -16,17 +16,22 @@ const A = () => {
     arr: [0],
     iter: 0,
   });
-  setInterval(() => setState(state => ({
+  let iter = setInterval(() => setState(state => ({
     arr: [...state.arr, state.iter+1],
     iter: state.iter+1
-  })), 10000);
+  })), 1000);
+  onCleanup(() => {
+    console.log('cleanup of A');
+    clearIterval(iter);
+  });
   return (
-    <For2>
+    <Wrapper>
+      <input type="text" placeholder="input" />
       <div>Hello </div>
       <For each={state.arr}>
         {i => <Li>{i}</Li>}
       </For>
-    </For2>
+    </Wrapper>
   );
 };
 
