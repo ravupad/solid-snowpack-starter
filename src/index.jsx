@@ -3,8 +3,11 @@ import {createState, onCleanup, For} from 'solid-js';
 import route, {register, setOnFailure} from './router';
 import jsx from './nanocss';
 
+let a = 'magenta';
+let b = 'green';
+
 const Wrapper = jsx('div', {
-  'background-color': 'red',
+  'background-color': a,
   'padding': '10px'
 });
 
@@ -20,7 +23,7 @@ const A = () => {
   let iter = setInterval(() => setState(state => ({
     arr: [...state.arr, state.iter+1],
     iter: state.iter+1
-  })), 100000);
+  })), 2000);
   onCleanup(() => {
     console.log('cleanup of A');
     clearInterval(iter);
@@ -33,7 +36,7 @@ const A = () => {
         {i => <Li>{i}</Li>}
       </For>
     </Wrapper>
-  );
+  ); 
 };
 
 const App = () => {
@@ -56,6 +59,7 @@ const App = () => {
   return () => <state.component {...state.props} />;
 };
 
+console.log("rendering app");
 render(() => <App/>, document.getElementById('root')); 
 
 if (import.meta.hot) {
